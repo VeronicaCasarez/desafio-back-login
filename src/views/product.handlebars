@@ -5,12 +5,17 @@
     <div class="welcome-message d-flex align-items-center">
         <p>Bienvenido </p>
         <p>Nombre: {{user.first_name}} {{user.last_name}}</p>
-        <p>Email: {{email}}</p>
-        <p>Rol: {{rol}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Rol: {{user.role}}</p>
         <a  id="logout-button" class="btn btn-secondary m-2 ml-10 ">Cerrar Sesión</a>
 
     </div>
-   
+    {{!-- <div>
+      {{#if }}
+          <a href="/private" class="btn">Ruta Privada</a>
+      {{/if}}
+    </div> --}}
+
     <div id="product-list" class="d-flex flex-row flex-wrap">
     {{#each products}}
       <div class="card m-2 mb-10 p-5">

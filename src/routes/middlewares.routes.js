@@ -15,7 +15,17 @@ export function isLoggedIn(req, res, next) {
   // Middleware para verificar si el usuario tiene autorizacion para ir a la ruta privada
   export function auth(req, res, next) {
     console.log("sesion",req.session);
-    if (req.session?.user && req.session?.admin) {
+    if (req.session?.user && req.session?.user.admin) {
        return next();
     }else return res.status(401).json("error de autenticacion");
 }
+
+// Middleware para verificar roles
+// export function checkRole(req,res,next) {
+     
+//     if (req.session?.user.role === "administrador") {
+//       next(); // Permitir acceso
+//     } else {
+//       res.status(403).send('Acceso denegado'); // Denegar acceso
+//     }
+//   };

@@ -17,6 +17,11 @@ async function postSignup(first_name, last_name, age, username, password) {
     });
   
     const result = await response.json();
+    if (result.respuesta === "ok") {
+      window.location.href = "/"; 
+    } else {
+      console.log(result); // Muestra los datos en caso de error
+    }
     return result;
   }
   

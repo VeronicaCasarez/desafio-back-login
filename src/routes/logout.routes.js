@@ -12,7 +12,7 @@ router.get("", (req, res) => {
       }
       else{
         console.log("sesion cerrada");
-        res.redirect("/login"); 
+        res.redirect("/"); 
       }
     
     });

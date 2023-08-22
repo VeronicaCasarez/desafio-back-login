@@ -7,18 +7,16 @@ async function postLogin(username, password) {
     body: JSON.stringify({ username, password }),
   });
 
-  const result = await response.json();
-
- 
+  const result = await response.json(); 
   if (result.respuesta === "Autenticado exitosamente") {
     window.location.href = "/api/products"; 
+
   } else {
     console.log(result); // Muestra los datos en caso de error
   }
 }
 
 const loginForm = document.getElementById("login-form");
-
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const username = document.getElementById("username").value;

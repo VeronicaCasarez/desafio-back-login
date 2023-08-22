@@ -9,14 +9,13 @@ export function isLoggedIn(req, res, next) {
     }
   }
   
-  // Middleware para verificar si el usuario ya está logueado y redirigirlo al perfil
-  export function redirectToProfileIfLoggedIn(req, res, next) {
-    if (req.session.user) {
-      // Si el usuario ya está logueado, redirige al perfil
-      return res.redirect("/profile");
-    } else {
-      // Si el usuario no está logueado, permite el acceso a la siguiente ruta
-      return next();
-    }
-  }
+
   
+
+  // Middleware para verificar si el usuario tiene autorizacion para ir a la ruta privada
+  export function auth(req, res, next) {
+    console.log("sesion",req.session);
+    if (req.session?.user && req.session?.admin) {
+       return next();
+    }else return res.status(401).json("error de autenticacion");
+}

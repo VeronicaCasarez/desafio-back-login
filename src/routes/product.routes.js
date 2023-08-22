@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { __dirname } from "../utils.js";
 import * as dotenv from "dotenv";
 import ProductModel from "../models/product.model.js"; 
+import UserModel from "../models/user.model.js"
 import { isLoggedIn } from "./middlewares.routes.js";
 import productsModel from "../models/product.model.js";
 
@@ -19,8 +20,7 @@ router.get("/", isLoggedIn, async (req, res) => {
   const currentPage = parseInt(page, 10) || defaultPage;
   
   try {
-    let response = await ProductModel.find();
-    console.log(response)
+    let response = await ProductModel.find().lean();   
     
      // Resolución de los filtros por categoría y disponibilidad
     // if (filter === "category") {
@@ -37,15 +37,18 @@ router.get("/", isLoggedIn, async (req, res) => {
     //   });
     // }
 
+ 
+
     const startIndex = (currentPage - 1) * (limit ? +limit : defaultLimit);
     const endIndex = startIndex + (limit ? +limit : defaultLimit);
   
     const paginatedResponse = response.slice(startIndex, endIndex);
 
     const totalPages = Math.ceil(response.length / (limit ? +limit : defaultLimit));
-   
+ 
     res.render('product', {
       products: paginatedResponse,
+ 
       pagination: {
         status: 'success',
         totalPages: totalPages,

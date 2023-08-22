@@ -1,3 +1,4 @@
+
 // document.addEventListener("DOMContentLoaded", async () => {
 //     try {
 //       // Realiza una solicitud a la API para obtener la lista de productos
@@ -6,10 +7,11 @@
 //         headers: {
 //           "Content-Type": "application/json",
 //         },
+       
 //       });
   
 //       if (response.ok) {
-//         const data = await response.json();
+//         //const data = await response.json();
 //         const productList = document.getElementById("product-list");
   
 //         // Itera sobre los productos y crea el HTML correspondiente
@@ -56,7 +58,7 @@ function renderPagination(data) {
   
     const pid = event.target.id;
   
-    fetch(`http://localhost:8080/api/carts/${cartId}/product/${pid}`, {
+    fetch(`/api/carts/${cartId}/product/${pid}`, {
       method: 'POST',
     })
     .then(response => response.json())

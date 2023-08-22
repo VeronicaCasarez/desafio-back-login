@@ -8,7 +8,8 @@ import LoginRoute from "./routes/login.routes.js";
 import SignupRoute from "./routes/signup.routes.js";
 import SessionRoute from "./routes/session.routes.js";
 import ProductRouter from "./routes/product.routes.js";
-import LogoutRouter from "./routes/logout.routes.js"
+import LogoutRouter from "./routes/logout.routes.js";
+import PrivateRouter from "./routes/private.routes.js"
 
 import * as dotenv from "dotenv";
 
@@ -67,7 +68,8 @@ app.use("/", LoginRoute);
 app.use("/signup", SignupRoute);
 app.use("/api/session/", SessionRoute);
 app.use("/api/products",ProductRouter)
-app.use("/logout",LogoutRouter)
+app.use("/logout",LogoutRouter);
+app.use("/private",PrivateRouter)
 
 
 const server = app.listen(PORT, () => {

@@ -1,6 +1,4 @@
 import { Router } from "express";
-import { redirectToProfileIfLoggedIn } from "./middlewares.routes.js";
-
 const router = Router();
 
 router.get("", (req, res) => {
@@ -9,7 +7,5 @@ router.get("", (req, res) => {
   });
 });
 
-// router.get("/", redirectToProfileIfLoggedIn, (req, res) => {
-//   res.render("login");
-// });
+
 export default router;

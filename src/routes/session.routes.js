@@ -40,5 +40,28 @@ router.post("/login", async (req, res) => {
   res.status(200).json({ respuesta: "Autenticado exitosamente" });
 });
 
+router.post("/signup", async (req, res) => {
+  const { first_name, last_name, age, email, password } = req.body;
+
+  const result = await UserModel.create({//crea el usuario
+    first_name,
+    last_name,
+    age,
+    email,
+    password,
+  });
+
+  if (result === null) {
+    return res.status(401).json({
+      respuesta: "error",
+    });
+  } else {
+    req.session.user = email;
+    req.session.admin = true;
+    res.status(200).json({
+      respuesta: "ok",
+    });
+  }
+});
 
 export default router;

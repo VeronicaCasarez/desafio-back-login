@@ -20,7 +20,8 @@ router.get("/", isLoggedIn, async (req, res) => {
   const currentPage = parseInt(page, 10) || defaultPage;
   
   try {
-    let response = await ProductModel.find().lean();   
+    let response = await ProductModel.find().lean(); 
+    let user= req.session.user;  
     
      // Resolución de los filtros por categoría y disponibilidad
     // if (filter === "category") {
@@ -48,7 +49,7 @@ router.get("/", isLoggedIn, async (req, res) => {
  
     res.render('product', {
       products: paginatedResponse,
- 
+      user:user,
       pagination: {
         status: 'success',
         totalPages: totalPages,

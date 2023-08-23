@@ -5,6 +5,7 @@ import notifier from 'node-notifier';
 
 const router = Router();
 
+//ruta para logearse
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const result = await UserModel.findOne({ email: username, password }).lean();
@@ -38,6 +39,32 @@ router.post("/login", async (req, res) => {
   };
 }
   res.status(200).json({ respuesta: "Autenticado exitosamente" });
+});
+
+
+//ruta para registrarse
+router.post("/signup", async (req, res) => {
+  const { first_name, last_name, age, email, password } = req.body;
+
+  const result = await UserModel.create({//crea el usuario
+    first_name,
+    last_name,
+    age,
+    email,
+    password: createHash(password),
+  });
+
+  if (result === null) {
+    return res.status(401).json({
+      respuesta: "error",
+    });
+  } else {
+    req.session.user = email;
+    req.session.admin = true;
+    res.status(200).json({
+      respuesta: "ok",
+    });
+  }
 });
 
 
